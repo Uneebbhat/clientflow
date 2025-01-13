@@ -14,22 +14,22 @@ const MotivationalQuotes = () => {
     null
   );
 
-  useEffect(() => {
-    const fetchMotivationalQuotes = async () => {
-      try {
-        const { data } = await axios.get(url, {
-          headers: {
-            "X-Api-Key": "UfPRNlI000jKIl8Ha5RoLw==4leosU1ML0b0KBqa",
-          },
-        });
-        setMotivationalQuote(data[0]);
-        console.log(data[0]);
-      } catch (error) {
-        console.error("Error fetching quote:", error);
-      }
-    };
-    fetchMotivationalQuotes();
-  }, []);
+  // useEffect(() => {
+  //   const fetchMotivationalQuotes = async () => {
+  //     try {
+  //       const { data } = await axios.get(url, {
+  //         headers: {
+  //           "X-Api-Key": "UfPRNlI000jKIl8Ha5RoLw==4leosU1ML0b0KBqa",
+  //         },
+  //       });
+  //       setMotivationalQuote(data[0]);
+  //       console.log(data[0]);
+  //     } catch (error) {
+  //       console.error("Error fetching quote:", error);
+  //     }
+  //   };
+  //   fetchMotivationalQuotes();
+  // }, []);
 
   return (
     <>
@@ -48,7 +48,7 @@ const MotivationalQuotes = () => {
         </div>
 
         <div className="bg-gradient-to-b from-black-500 to-black-900 p-[20px] md:p-[40px] rounded-[20px]">
-          {motivationalQuote ? (
+          {/* {motivationalQuote ? (
             <q className="text-sm md:text-h6 lg:text-h6 leading-relaxed">
               {motivationalQuote.quote} —<cite>{motivationalQuote.author}</cite>
             </q>
@@ -56,7 +56,7 @@ const MotivationalQuotes = () => {
             <p className="text-sm text-gray-400">
               Loading motivational quote...
             </p>
-          )}
+          )} */}
         </div>
       </div>
     </>
