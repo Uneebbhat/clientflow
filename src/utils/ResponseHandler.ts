@@ -4,7 +4,7 @@ interface ResponseHandlerProps {
   statusCode: number;
   message: string;
   data: {};
-  token: {} | null;
+  token: unknown;
 }
 
 class ResponseHandler {
