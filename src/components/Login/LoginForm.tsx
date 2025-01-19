@@ -12,8 +12,7 @@ import Spinner from "@/components/Spinner";
 
 const LoginForm = () => {
   const { showPassword, togglePassword } = useTogglePassword();
-  const { formData, loading, error, handleOnChange, handleOnSubmit } =
-    useLogin();
+  const { formData, loading, handleOnChange, handleOnSubmit } = useLogin();
 
   return (
     <>
@@ -39,6 +38,7 @@ const LoginForm = () => {
                   autoCapitalize="none"
                   autoComplete="email"
                   autoCorrect="off"
+                  value={formData.email}
                   onChange={handleOnChange}
                 />
               </div>
@@ -59,6 +59,7 @@ const LoginForm = () => {
                     placeholder="Password"
                     type={showPassword ? "text" : "password"}
                     onChange={handleOnChange}
+                    value={formData.password}
                   />
                   {showPassword ? (
                     <EyeClosed

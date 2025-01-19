@@ -1,12 +1,16 @@
 const MONGODB_URI = process.env.MONGODB_CONNECTION_STRING;
 const ACCESS_TOKEN = process.env.ACCESS_TOKEN_SECRET;
 const REFRESH_TOKEN = process.env.REFRESH_TOKEN_SECRET;
-const JWT_TOKEN = process.env.JET_SECRET;
+const JWT_TOKEN = process.env.JWT_SECRET;
 const CLOUD_NAME = process.env.CLOUDINARY_NAME;
 const CLOUD_API_KEY = process.env.CLOUDINARY_API_KEY;
 const CLOUD_API_SECRET = process.env.CLOUDINARY_API_SECRET;
 const DEFAULT_IMG = process.env.CLOUDINARY_DEFAULT_IMAGE;
 const RRESEND_API_KEY = process.env.RESEND_API_KEY;
+const HOST_NAME = process.env.EMAIL_HOST_NAME;
+const EMAIL_PORT = process.env.EMAIL_HOST_PORT;
+const EMAIL_USER = process.env.EMAIL_USER_NAME;
+const EMAIL_PASSWORD = process.env.EMAIL_USER_PASSWORD;
 
 export {
   MONGODB_URI,
@@ -18,4 +22,8 @@ export {
   CLOUD_API_SECRET,
   DEFAULT_IMG,
   RRESEND_API_KEY,
+  HOST_NAME,
+  EMAIL_PORT,
+  EMAIL_USER,
+  EMAIL_PASSWORD,
 };

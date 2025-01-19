@@ -1,18 +1,24 @@
 "use client";
 import { useState } from "react";
+import { useToast } from "@/hooks/use-toast";
+import axios from "axios";
+import useUserStore from "@/store/useUserStore";
+import { useRouter } from "next/navigation";
 
-interface SignupForm {
+interface LoginForm {
   email: string;
   password: string;
 }
 
 const useLogin = () => {
-  const [formData, setFormData] = useState<SignupForm>({
+  const router = useRouter();
+  const { toast } = useToast();
+  const [formData, setFormData] = useState<LoginForm>({
     email: "",
     password: "",
   });
   const [loading, setLoading] = useState<boolean>(false);
-  const [error, setError] = useState<string | null>(null);
+  const { setUser } = useUserStore();
 
   const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -23,11 +29,33 @@ const useLogin = () => {
     e.preventDefault();
     try {
       setLoading(true);
-      await new Promise<void>((resolve) => setTimeout(() => resolve(), 3000));
-      console.log(formData);
+      const response = await axios.post("/api/login", formData);
+
+      const { _id, name, email, profilePic } = response.data.data;
+      setUser({
+        id: _id,
+        name,
+        email,
+        profilePic,
+        token: response.data.token,
+      });
+      toast({
+        title: "Logged in successfully",
+        variant: "default",
+      });
+
+      setFormData({
+        email: "",
+        password: "",
+      });
+
+      router.push("/dashboard");
     } catch (error: any) {
-      console.log(error);
-      setError(error.message);
+      // console.log(error);
+      toast({
+        title: error.response.data.error,
+        variant: "destructive",
+      });
     } finally {
       setLoading(false);
     }
@@ -36,7 +64,6 @@ const useLogin = () => {
   return {
     formData,
     loading,
-    error,
     handleOnChange,
     handleOnSubmit,
   };
